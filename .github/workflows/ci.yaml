@@ -96,8 +96,8 @@ jobs:
         
         - name: Commit and push changes
           run: |
-            git config --global user.email "pennmokomgerald43@gmail.com"
-            git config --global user.name "Gerald Penn"
+            git config --global user.email "mokom.gerald@ictuniversity.edu.cm"
+            git config --global user.name "pennmokom"
             git add kubernetes/productcatalog/deploy.yaml
             git commit -m "[CI]: Update product catalog image tag"
             git push origin HEAD:main -f
