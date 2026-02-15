@@ -77,9 +77,10 @@ jobs:
         projectBaseDir: src/product-catalog
        env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_ORG: ${{ secrets.SONAR_ORG }}
-        SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+        SONAR_ORG: pennmokom
+        SONAR_PROJECT_KEY: product-catalog-service
     
+
 
     docker:
         runs-on: ubuntu-latest
