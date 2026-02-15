@@ -55,32 +55,35 @@ jobs:
             # run: golangci-lint run
             working-directory: src/product-catalog
     sonar:
-     runs-on: ubuntu-latest
-     needs: build
-     steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
-       with:
-        fetch-depth: 0 
-     - name: Setup Go
-       uses: actions/setup-go@v2
-       with:
-        go-version: 1.22
+      runs-on: ubuntu-latest
+      needs: build
 
-     - name: Run tests with coverage
-       run: |
-        cd src/product-catalog
-        go test -coverprofile=coverage.out ./...
-     - name: SonarCloud Scan
-       uses: SonarSource/sonarcloud-github-action@v2
-       with:
-        projectBaseDir: src/product-catalog
-       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_ORG: pennmokom
-        SONAR_PROJECT_KEY: product-catalog-service
-    
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.22
+
+      - name: Run tests with coverage
+        run: |
+          cd src/product-catalog
+          go test -coverprofile=coverage.out ./...
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: src/product-catalog
+          args: >
+            -Dsonar.projectKey=product-catalog-service
+            -Dsonar.organization=pennmokom
+            -Dsonar.go.coverage.reportPaths=coverage.out
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     docker:
         runs-on: ubuntu-latest
