@@ -79,11 +79,11 @@ jobs:
         with:
           projectBaseDir: src/product-catalog
           args: >
-            -Dsonar.projectKey=product-catalog-service
-            -Dsonar.organization=pennmokom
+            -Dsonar.projectKey=product-pennmokom_devsecops-zero-trust-project
+            -Dsonar.organization=pennmokom-1
             -Dsonar.go.coverage.reportPaths=coverage.out
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
 
     docker:
         runs-on: ubuntu-latest
