@@ -5,12 +5,13 @@ name: product-catalog-ci
 on: 
     pull_request:
         branches:
-        - main
-
+        - master
+    push:
+        branches:
+        - master
 jobs:
     build:
         runs-on: ubuntu-latest
-
         steps:
         - name: checkout code
           uses: actions/checkout@v4
