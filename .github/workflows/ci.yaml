@@ -9,6 +9,8 @@ on:
     push:
         branches:
         - master
+permissions:
+  contents: write   
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -100,7 +102,7 @@ jobs:
             git config --global user.name "pennmokom"
             git add kubernetes/productcatalog/deploy.yaml
             git commit -m "[CI]: Update product catalog image tag"
-            git push origin HEAD:main -f
+            git push origin HEAD:master
 
         
         
