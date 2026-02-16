@@ -95,7 +95,7 @@ jobs:
     #   - name: SonarQube Scan
     #     uses: SonarSource/sonarqube-scan-action@v6
     #     env:
-    #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #       SONAR_TOKEN: 
     snyk-sca: # This runs at the same time as SonarCloud
      runs-on: ubuntu-latest
      steps:
@@ -107,7 +107,7 @@ jobs:
         with:
           args: src/product-catalog
 
-          
+
     docker:
         runs-on: ubuntu-latest
 
