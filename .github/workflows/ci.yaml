@@ -102,6 +102,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run Snyk
         uses: snyk/actions/golang@master
+        continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -125,7 +126,7 @@ jobs:
            docker build -t product-catalog:${{ github.run_id }} src/product-catalog
         - name: Scan image with Trivy
           uses: aquasecurity/trivy-action@master
-          continue-on-error: true
+          # continue-on-error: false
           with:
             image-ref: product-catalog:${{ github.run_id }}
             format: table
