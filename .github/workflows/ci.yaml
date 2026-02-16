@@ -108,6 +108,30 @@ jobs:
         with:
           args: src/product-catalog
 
+    checkov-sca:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Run Checkov
+          uses: bridgecrewio/checkov-action@master
+          with:
+            # Point to your microservice directory
+            directory: src/product-catalog
+            # soft-fail: true ensures the build doesn't break on findings
+            soft_fail: true 
+            # scan_hcl_or_tf: false # Optional: Set if you want to skip IaC and only do SCA
+            framework: sca,dockerfile,kubernetes
+            output_format: cli,sarif
+            output_file_path: console,results.sarif
+
+        # Optional: Upload results to GitHub Security Tab
+        - name: Upload SARIF file
+          uses: github/codeql-action/upload-sarif@v3
+          if: always()
+          with:
+            sarif_file: results.sarif
 
     docker:
         runs-on: ubuntu-latest
