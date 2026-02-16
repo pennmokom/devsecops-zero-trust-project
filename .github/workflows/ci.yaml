@@ -65,7 +65,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v2
         with:
           go-version: 1.22
 
@@ -81,10 +81,10 @@ jobs:
           args: >
             -Dsonar.projectKey=product-pennmokom_devsecops-zero-trust-project
             -Dsonar.organization=pennmokom-1
+             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.go.coverage.reportPaths=coverage.out
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
    
     # sonarqube:
     #  name: SonarQube
