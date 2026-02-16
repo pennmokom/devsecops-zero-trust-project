@@ -128,7 +128,7 @@ jobs:
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
-        if: always() # Ensures upload happens even if Checkov finds issues
+        if: always() 
         with:
           sarif_file: results.sarif
 
